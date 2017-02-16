@@ -1,0 +1,232 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<title>#DEVICE_NAME# - #VERSION#</title>
+#CSS#
+</head>
+<body onload="updateTriggerCount();">
+<script>
+function send(url){
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url, true);
+xhr.send();
+}
+function addTrigger(){
+var number = document.getElementById("trigger_list").childElementCount;
+var _max = "#MAX_TRIGGER#";
+var _trigger = document.createElement("tr");
+var _new_pin = document.getElementById("new_pin").options[document.getElementById("new_pin").selectedIndex].text;
+var _new_ip = document.getElementById("new_ip").value;
+var _new_port = document.getElementById("new_port").value;
+if(_new_ip != "" && _new_port != "" && _new_port != "0"){
+	if(number >= parseInt(_max)){
+		alert("Up to " + _max + " Triggers can be used.");
+		return;
+	}
+	_trigger.innerHTML = "<th>" + (number+1) + "</th>";
+	_trigger.innerHTML += "<td>" + _new_pin + "<input type='hidden' name='triggers_" + number + "_pin' value='" + _new_pin + "' ></td>";
+	_trigger.innerHTML += "<td>" + _new_ip + "<input type='hidden' name='triggers_" + number + "_ip' value='" + _new_ip + "' ></td>";
+	_trigger.innerHTML += "<td>" + _new_port + "<input type='hidden' name='triggers_" + number + "_port' value='" + _new_port + "' ></td>";
+	document.getElementById("trigger_list").appendChild(_trigger);
+	updateTriggerCount();
+
+	console.log( "addTrigger(); done." );
+}else{
+	alert("Please enter IP　address and port number.");
+}
+}
+function removeTrigger(){
+var _list = document.getElementById("trigger_list");
+if(_list.childElementCount > 0){
+	console.log( "removeTrigger( " + _list.lastChild.innerHTML + " ); done. " + _list.childElementCount );
+	_list.removeChild(_list.lastChild);
+	updateTriggerCount();
+}
+}
+function updateTriggerCount(){
+var _number = document.getElementById("trigger_list").childElementCount;
+document.getElementById("trigger_count").innerHTML = _number;
+}
+function changeValue(_num){
+var _value = document.getElementById( "pin" + _num ).value;
+send("/pin?no=" + _num + "&value=" + _value);
+}
+</script>
+<section class="container">
+<h1><span class="glyphicon glyphicon-home"></span> #DEVICE_NAME#   <small>#VERSION#</small></h1>
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="glyphicon glyphicon-tasks"></span> GPIO</div>
+	<div class="panel-body form-horizontal">
+		<div class="form-group">
+			<label class="col-xs-4 col-sm-2">PIN 0 <output class="badge" name="badge0" id="badge0" for="pin0">0</output></label>
+			<div class="col-xs-8 col-sm-10"><input type="range" min="0" max="255" step="1" name="pin0" id="pin0" onchange="changeValue(0);" oninput="badge0.value=pin0.value" value="0" /></div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-4 col-sm-2">PIN 2 <output class="badge" name="badge2" id="badge2" for="pin2">0</output></label>
+			<div class="col-xs-8 col-sm-10"><input type="range" min="0" max="255" step="1" name="pin2" id="pin2" onchange="changeValue(2);" oninput="badge2.value=pin2.value" value="0" /></div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-4 col-sm-2">PIN 3 <output class="badge" name="badge3" id="badge3" for="pin3">0</output></label>
+			<div class="col-xs-8 col-sm-10"><input type="range" min="0" max="255" step="1" name="pin3" id="pin3" onchange="changeValue(3);" oninput="badge3.value=pin3.value" value="0" /></div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-4 col-sm-2">PIN 4 <output class="badge" name="badge4" id="badge4" for="pin4">0</output></label>
+			<div class="col-xs-8 col-sm-10"><input type="range" min="0" max="255" step="1" name="pin4" id="pin4" onchange="changeValue(4);" oninput="badge4.value=pin4.value" value="0" /></div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-4 col-sm-2">PIN 5 <output class="badge" name="badge5" id="badge5" for="pin5">0</output></label>
+			<div class="col-xs-8 col-sm-10"><input type="range" min="0" max="255" step="1" name="pin5" id="pin5" onchange="changeValue(5);" oninput="badge5.value=pin5.value" value="0" /></div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="panel panel-default">
+<div class="panel-heading"><span class="glyphicon glyphicon-dashboard"></span> State</div>
+<div class="panel-body row">
+	<div class="col-xs-6 col-md-6">
+		<h4><span class="label label-success">Device Name</span></h4>
+		<p>#DEVICE_NAME#</p>
+	</div>
+	<div class="col-xs-6 col-md-6">
+		<h4><span class="label label-info">Mode</span></h4>
+		<p>#MODE#</p>
+	</div>
+	<div class="col-xs-6 col-md-6">
+		<h4><span class="label label-primary">IP Address</span></h4>
+		<p>#IP#</p>
+	</div>
+	<div class="col-xs-6 col-md-6">
+		<h4><span class="label label-primary">SSID</span></h4>
+		<p>#SSID#</p>
+	</div>
+</div>
+</div>
+<div class="panel panel-default table-responsive">
+<div class="panel-heading"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> API List</div>
+<table class="table table-striped table-bordered table-hover table-condensed">
+<thead>
+<tr>
+	<th>#</th>
+	<th>URL</th>
+	<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<th scope="row">1</th>
+	<td><a href="http://#DEVICE_NAME#.local/">http://#DEVICE_NAME#.local/</a></td>
+	<td>Root Menu. This page.</td>
+</tr>
+<tr>
+	<th scope="row">2</th>
+	<td><a href="http://#DEVICE_NAME#.local/off">http://#DEVICE_NAME#.local/pin</a></td>
+	<td>Set GPIO pin value.<pre>ex) http://#DEVICE_NAME#.local/pin?no=5&amp;value=255</pre></td>
+</tr>
+<tr>
+	<th scope="row">3</th>
+	<td><a href="http://#DEVICE_NAME#.local/config">http://#DEVICE_NAME#.local/config</a></td>
+	<td>Set device name, SSID, PASS.<pre>ex) http://#DEVICE_NAME#.local/config?name=servo&amp;ssid=wifi_router&amp;pass=12345678&amp;triggers_0_pin=12&amp;triggers_0_ip=192.168.0.100&amp;triggers_0_port=20000</pre></td>
+</tr>
+<tr>
+	<th scope="row">4</th>
+	<td><a href="http://#DEVICE_NAME#.local/init">http://#DEVICE_NAME#.local/init</a></td>
+	<td>Restore the default settings.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<div class="panel panel-default">
+<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> Settings</div>
+<div class="panel-body">
+	<form action= "/config" method= "get" id="form">
+	<h4><span class="glyphicon glyphicon-chevron-right"></span> Network Settings</h4>
+	<p>
+	<div class="input-group">
+		<span class="input-group-addon" id="device_name">Device Name</span>
+		<input type="text" class="form-control" pattern="^[-0-9a-zA-Z_.]+$" name="name" value="#DEVICE_NAME#" maxlength="16">
+	</div>
+	</p>
+	<p>
+	<div class="input-group">
+		<span class="input-group-addon" id="ssid">SSID</span>
+		<input type="text" class="form-control" pattern="^[-0-9a-zA-Z_.]+$" name="ssid" value="#SSID#" maxlength="32" >
+	</div>
+	</p>
+	<p>
+	<div class="input-group">
+		<span class="input-group-addon" id="pass">PASS</span>
+		<input type="password" class="form-control" name="pass" value="#PASS#" maxlength="32">
+	</div>
+	</p>
+	<hr>
+	<h4><span class="glyphicon glyphicon-chevron-right"></span> UDP Triggers</h4>
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover table-condensed">
+	<tbody id="triggers">
+	<tr id="panel">
+	<td>
+		<p><label id="trigger_name">New Trigger</label></p>
+		<div class="input-group">
+		<span class="input-group-addon"">Trigger PIN</span>
+		<select class="form-control" name="new_pin" id="new_pin">
+		<option>12</option>
+		<option>13</option>
+		<option>14</option>
+		<option>15</option>
+		<option>16</option>
+		</select>
+		</div>
+		<p>
+		<div class="input-group">
+			<span class="input-group-addon">Target IP</span>
+			<input type="text" class="form-control" pattern="^[-0-9a-zA-Z_.]{7,32}+$" placeholder="192.168.0.100" name="new_ip" id="new_ip" value="" maxlength="32">
+		</div>
+		</p>
+		<p>
+		<div class="input-group">
+			<span class="input-group-addon">Target Port</span>
+			<input type="number" class="form-control" pattern="^[-0-9]{1,8}+$" placeholder="20000" name="new_port" id="new_port" value="" maxlength="8">
+		</div>
+		</p>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	<p class="text-center row">
+	<button type="button" class="btn btn-primary btn-lg span6" onclick="addTrigger();"><span class="glyphicon glyphicon-arrow-down"></span> Add Trigger</button>
+	<button type="button" class="btn btn-danger btn-lg span6" onclick="removeTrigger();"><span class="glyphicon glyphicon-remove"></span> Remove Trigger</button>
+	</p>
+	<div class="panel panel-default table-responsive">
+	<div class="panel-heading">
+		<label><span class="glyphicon glyphicon-list-alt"></span> Trigger List</label>
+		<label class="pull-right badge"><span id="trigger_count">0</span> / #MAX_TRIGGER# Triggers</label>
+	</div>
+	<table class="table table-striped table-bordered table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Trigger Pin</th>
+				<th>Target IP</th>
+				<th>Target Port</th>
+			</tr>
+		</thead>
+		<tbody id="trigger_list">#TRIGGER_LIST#</tbody>
+	</table>
+	</div>
+	<div>
+		<label>UDP Message Example</label>
+		<pre>#DEVICE_NAME#/12/1;<br />[Device Name]/[Pin Number]/[Flag];</pre>
+	</div>
+	<p class="text-right"><button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Confirm Settings</button>
+	</p>
+	</form>
+</div>
+</div>
+<p class="small text-center">#VERSION#<br /><a href="http://teruaki-tsubokura.com/">http://teruaki-tsubokura.com/</a></p>
+</section>
+</body>
+</html>
