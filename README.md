@@ -11,10 +11,10 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 ## Usage
 
 1. Download to your sketch folder for Arduino.
-2. Open the EspUdpTrigger.ino.
+2. Open the `EspUdpTrigger.ino`.
 3. Upload sketch data directory using [arduino-esp8266fs-plugin](https://github.com/esp8266/arduino-esp8266fs-plugin).
-4. Upload the sketch file via serial from UART mode.
-5. Switch to the Flash mode.
+4. Upload the sketch file via serial from `UART mode`.
+5. Switch to the `Flash mode`.
 6. Reboot the ESP.
 7. Join the ESP AP.(SSID="esp", PASSWORD="12345678")
 8. Access to `[http://192.168.4.1/](http://192.168.4.1/)`
@@ -23,12 +23,12 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 
 ## API
 
-# | URL | Name
---- | --- | ---
-1 | [http://Controller_01.local/](http://Controller_01.local/) | Root Menu. This page.
-2 | [http://Controller_01.local/pin](http://Controller_01.local/pin]) | Set GPIO pin value.<br>ex) `http://Controller_01.local/pin?no=5&value=255`
-3 | [http://Controller_01.local/config](http://Controller_01.local/config) | Set device name, SSID, PASS.<br>ex) `http://Controller_01.local/config?name=servo&ssid=wifi_router&pass=12345678&triggers_0_pin=12&triggers_0_ip=192.168.0.100&triggers_0_port=20000`
-4 | [http://Controller_01.local/init](http://Controller_01.local/init) | Restore the default settings.
+| No | URL | Name |
+| --- | --- | --- |
+| 1 | [http://Controller_01.local/](http://Controller_01.local/) | Root Menu. This page. |
+| 2 | [http://Controller_01.local/pin](http://Controller_01.local/pin]) | Set GPIO pin value.<br>ex) `http://Controller_01.local/pin?no=5&value=255` |
+| 3 | [http://Controller_01.local/config](http://Controller_01.local/config) | Set device name, SSID, PASS.<br>ex) `http://Controller_01.local/config?name=servo&ssid=wifi_router&pass=12345678&triggers_0_pin=12&triggers_0_ip=192.168.0.100&triggers_0_port=20000` |
+| 4 | [http://Controller_01.local/init](http://Controller_01.local/init) | Restore the default settings. |
 
 ## Screenshot
 
