@@ -180,13 +180,7 @@ bool setup_client() {
 
 void setup_server() {
   Serial.println("[ Setup Server Mode ]");
-  byte mac[6];
-  WiFi.macAddress(mac);
   WiFi.mode(WIFI_AP);
-  server_ssid = "";
-  for (uint8_t i = 0; i < 6; i++) {
-    server_ssid += String(mac[i], HEX);
-  }
   Serial.println("SSID: " + server_ssid);
   Serial.println("PASS: " + server_pass);
 
