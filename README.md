@@ -4,8 +4,11 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 ## Dependency
 
 * Arduino core for ESP8266 WiFi chip
+
 [https://github.com/esp8266/arduino-esp8266fs-plugin](https://github.com/esp8266/arduino-esp8266fs-plugin)
+
 * Arduino ESP8266 filesystem uploader
+
 [https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)
 
 ## Usage
@@ -20,6 +23,7 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 8. Access to `[http://192.168.4.1/](http://192.168.4.1/)`
 9. Set to the [Device Name] and [SSID], [PASS] for your Wi-Fi router.
 10. Access to `http://[Device Name].local/` or IP Address after Reboot.
+
 > If SSID or password can not be found, AP mode. When it is found, it starts up in STA mode.
 
 ## API
