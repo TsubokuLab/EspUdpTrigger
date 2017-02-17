@@ -31,8 +31,8 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 | No | URL | Name |
 | --- | --- | --- |
 | 1 | `http://<Device Name>.local/` | Root Menu. This page. |
-| 2 | `http://<Device Name>.local/pin` | Set GPIO pin value.<br>ex) `http://<Device Name>.local/pin?no=5&value=255` |
-| 3 | `http://<Device Name>.local/config` | Set device name, SSID, PASS.<br>ex) `http://<Device Name>.local/config?name=servo&ssid=wifi_router&pass=12345678&triggers_0_pin=12&triggers_0_ip=192.168.0.100&triggers_0_port=20000` |
+| 2 | `http://<Device Name>.local/pin` | Set GPIO pin value.<br>ex) `http://Controller_01.local/pin?no=5&value=255` |
+| 3 | `http://<Device Name>.local/config` | Set device name, SSID, PASS.<br>ex) `http://Controller_01.local/config?name=servo&ssid=wifi_router&pass=12345678&triggers_0_pin=12&triggers_0_ip=192.168.0.100&triggers_0_port=20000` |
 | 4 | `http://<Device Name>.local/init` | Restore the default settings. |
 
 ## UDP Trigger
