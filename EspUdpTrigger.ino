@@ -8,6 +8,7 @@
 #include <EEPROM.h>
 #define MAX_TRIGGER 8
 #define EEPROM_SIZE 512
+#define VERSION "ESP UDP Manager v0.1.4"
 
 const char* device_name = "device";
 const char* path_root   = "/index.html";
@@ -214,7 +215,7 @@ boolean showIndex(){
   EEPROM.get<CONFIG>(0, buf);  
   if(sizeof(buf.deviceName) > 0){
     _html = (char*)html;
-    _html.replace("#VERSION#", "ESP UDP Manager v0.1.3");
+    _html.replace("#VERSION#", VERSION);
     _html.replace("#DEVICE_NAME#", buf.deviceName);
     _html.replace("#SSID#", buf.ssid);
     _html.replace("#PASS#", buf.pass);
