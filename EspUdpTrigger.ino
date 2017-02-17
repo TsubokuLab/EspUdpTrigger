@@ -8,7 +8,7 @@
 #include <EEPROM.h>
 #define MAX_TRIGGER 8
 #define EEPROM_SIZE 512
-#define VERSION "ESP UDP Manager v0.1.4"
+#define VERSION "ESP UDP Trigger v0.1.4"
 
 const char* device_name = "device";
 const char* path_root   = "/index.html";
