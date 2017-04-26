@@ -21,7 +21,7 @@ UDP trigger for ESP8266 / ESP-WROOM-02.
 6. Reboot the ESP.
 7. Join the ESP AP.(SSID="esp", PASSWORD="12345678")
 8. Access to [http://192.168.4.1/](http://192.168.4.1/)<br />
-(If you have "stack" error, please try acess to [http://192.168.4.1/init](http://192.168.4.1/init) first for clear the EEPROM.)
+(If you have "stack" error, please try access to [http://192.168.4.1/init](http://192.168.4.1/init) first for clear the EEPROM.)
 9. Set to the [Device Name] and [SSID], [PASS] for your Wi-Fi router.
 10. Access to `http://<Device Name>.local/` or IP Address after Reboot.
 
